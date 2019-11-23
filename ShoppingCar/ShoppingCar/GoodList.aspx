@@ -7,7 +7,9 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
     <title></title>
     <style type="text/css">
-
+        body {
+            background-image: linear-gradient(120deg,#3498db,#8e44ad);
+        }
         .tb{width:200px;height:300px;}
         a{text-decoration:none;}
         .img{width:200px;height:200px;border:0;}
@@ -21,7 +23,7 @@
             <br />
             【商品展示】<asp:Literal ID="ltCurUser" runat="server"></asp:Literal>
             <br />
-            ----------------------------------------------------------------------------------<asp:DataList ID="dlstGoods" runat="server" RepeatColumns="3" DataSourceID="sqlGoods" DataKeyField="gdID" >
+            ----------------------------------------------------------------------------------<asp:DataList ID="dlstGoods" runat="server" RepeatColumns="3" DataSourceID="sqlGoods" DataKeyField="gdID" OnItemCommand="dlstGoods_ItemCommand1" >
                 <ItemTemplate>
                     <table class="tb">
                         <tr>
@@ -47,6 +49,9 @@
                                  </td>
                     </table>
                 </ItemTemplate>
+                <FooterTemplate>
+                            <a href="ShoppingCar.aspx">购物车</a>
+                </FooterTemplate>
             </asp:DataList>
             <asp:SqlDataSource ID="sqlGoods" runat="server" ConnectionString="Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=D:\DataBase\SMDB.mdf;Integrated Security=True;Connect Timeout=30" ProviderName="System.Data.SqlClient" SelectCommand="select * from [Goods]" />
             <asp:Label ID="lblCurPage" runat="server" Text="" />

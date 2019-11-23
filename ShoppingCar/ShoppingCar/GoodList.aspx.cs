@@ -1,4 +1,7 @@
 ﻿using System;
+using System.Data;
+using System.Configuration;
+using System.Data.SqlClient;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
@@ -52,15 +55,6 @@ namespace ShoppingCar
             DataListBind();
         }
 
-        protected void dlstGoods_ItemCommand(object source,DataListCommandEventArgs e)
-        {
-            if (Session["uID"] != null && e.CommandName == "addShop")
-            {
-                int gdID = Convert.ToInt32(dlstGoods.DataKeys[e.Item.ItemIndex]);
-                //未完成
-            }
-        }
-
         protected void lbtnPre_Click(object sender, EventArgs e)
         {
 
@@ -69,6 +63,34 @@ namespace ShoppingCar
         protected void lbtnNext_Click(object sender, EventArgs e)
         {
 
+        }
+
+        protected void dlstGoods_ItemCommand1(object source, DataListCommandEventArgs e)
+        {
+            if (Session["uID"] != null && e.CommandName == "addShop")
+            {
+                int gdID = Convert.ToInt32(dlstGoods.DataKeys[e.Item.ItemIndex]);
+                string str = ConfigurationManager.ConnectionStrings["SMDB"].ConnectionString;
+                using (SqlConnection conn = new SqlConnection(str))
+                {
+                    conn.Open();
+                    SqlCommand cmd = new SqlCommand("upAddGoodsToCar", conn);
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    SqlParameter[] ps =
+                    {
+                        new SqlParameter("@scID",Session["scID"]),
+                        new SqlParameter("@gdID",gdID),
+                        new SqlParameter("@num",1)
+                    };
+                    cmd.Parameters.AddRange(ps);
+                    cmd.ExecuteNonQuery();
+                }
+                ClientScript.RegisterStartupScript(GetType(), "", "<script>alert('添加成功');location.href='ShoppingCar.aspx';</script>");
+            }
+            else
+            {
+                ClientScript.RegisterStartupScript(GetType(), "", "<script>alert('请先登录');location.href='Login.aspx';</script>");
+            }
         }
     }
 }
