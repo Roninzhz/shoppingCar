@@ -45,7 +45,7 @@
                                  <asp:Literal ID="lt3" runat="server" Text='<%#Eval("gdEvNum") %>' />
                                  </td></tr>
                         <td class="tdaddshop">
-                                <asp:ImageButton CommandName="addShop" runat="server" AlternateText="加入到购物车" ImageUrl="images/icon/addCar.jpg"/>
+                                <asp:ImageButton CommandName="addShop" runat="server" AlternateText="加入到购物车"/>
                                  </td>
                     </table>
                 </ItemTemplate>
