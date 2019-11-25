@@ -32,7 +32,7 @@
                             <asp:CheckBox ID="chkSelect" runat="server" AutoPostBack="True" Checked="True" />
                         </ItemTemplate>
                         <FooterTemplate>
-                            <asp:LinkButton ID="lbtnSelectAll" runat="server" Text="取消全选" OnClick="lbtnSelectAll_Click"></asp:LinkButton>
+                            <asp:LinkButton ID="lbtnSelectAll" runat="server" Text="取消全选" OnClick="lbtnSelectAll_Click" OnClientClick="return confirm('确定取消全选');"></asp:LinkButton>
                         </FooterTemplate>
                         <ItemStyle CssClass="center" />
                     </asp:TemplateField>
@@ -64,7 +64,7 @@
                     <asp:TemplateField HeaderText="数量" ItemStyle-CssClass="center">
                         <ItemTemplate>
                             <asp:TextBox ID="txtNum" runat="server" Width="20px" Text='<%# Bind("scNum") %>' />
-                            <asp:ImageButton ID="ibtnUpdate" runat="server" CausesValidation="false" ToolTip="单击更新数量" CommandName="Update" AlternateText="更新" OnClientClick="return confirm('确定要修改该商品的数量？');"/>
+                            <asp:ImageButton ID="ibtnUpdate"  ImageUrl="images/icon/edit.png" runat="server" CausesValidation="false" ToolTip="单击更新数量" CommandName="Update" AlternateText="更新" OnClientClick="return confirm('确定要修改该商品的数量？');"/>
                         </ItemTemplate>
                         <FooterTemplate>
                             <asp:Literal ID="ltlTotal" runat="server" Text="商品总价"></asp:Literal>
@@ -83,7 +83,7 @@
                         </ItemTemplate>
                         <FooterTemplate>
                             <a href="Order.aspx">
-                                <asp:ImageButton ID="imageComp" runat="server" CssClass="noborder" />
+                                <asp:ImageButton ID="imageComp" runat="server" CssClass="noborder" ImageUrl="images/icon/comp.jpg" />
                             </a>
                         </FooterTemplate>
                         <ItemStyle CssClass="center" />

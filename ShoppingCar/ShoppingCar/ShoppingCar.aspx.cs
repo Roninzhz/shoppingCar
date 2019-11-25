@@ -24,13 +24,12 @@ namespace ShoppingCar
             {
                 Literal ltl = (Literal)e.Row.FindControl("ltlSum");
                 string strSum = ltl.Text;
-                if (!string.IsNullOrEmpty(strSum))
+                if (!string.IsNullOrEmpty(strSum)&&cb.Checked)
                     sum += Convert.ToDouble(strSum);
             }
             else if (e.Row.RowType == DataControlRowType.Footer)
             {
-                //课本string.Format("{0:c}",sum)
-                e.Row.Cells[5].Text = sum.ToString();
+                e.Row.Cells[5].Text = string.Format("{0:C}",sum);
                 ((LinkButton)e.Row.FindControl("lbtnClear")).Attributes.Add("onClick", "javascript:return confirm('确定清空购物车');");
             }
         }
@@ -49,14 +48,32 @@ namespace ShoppingCar
             }
             Response.Redirect(Request.Path);
         }
-        protected void lbtnSelectAll_Click(object sender, EventArgs e)
-        {
-            
-        }
 
         protected void grdGoods_SelectedIndexChanged(object sender, EventArgs e)
         {
 
+        }
+
+        protected void lbtnSelectAll_Click(object sender, EventArgs e)
+        {
+            LinkButton lb = (LinkButton)sender;
+            foreach (GridViewRow gvr in grdGoods.Rows)
+            {
+                CheckBox cb = (CheckBox)gvr.FindControl("chkSelect");
+                if (cb.Checked == true)
+                {
+                    cb.Checked = false;
+                }
+                else
+                {
+                    cb.Checked = true;
+
+                }
+            }
+            if (lb.Text.Equals("全选"))
+                lb.Text = "取消全选";
+            else
+                lb.Text = "全选";
         }
     }
 }
