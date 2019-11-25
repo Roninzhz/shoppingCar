@@ -32,7 +32,7 @@
                             <asp:CheckBox ID="chkSelect" runat="server" AutoPostBack="True" Checked="True" />
                         </ItemTemplate>
                         <FooterTemplate>
-                            <asp:LinkButton ID="lbtnSelectAll" runat="server" Text="取消全选" OnClick="lbtnSelectAll_Click" OnClientClick="return confirm('确定取消全选');"></asp:LinkButton>
+                            <asp:LinkButton ID="lbtnSelectAll" runat="server" Text="取消全选" OnClick="lbtnSelectAll_Click"></asp:LinkButton>
                         </FooterTemplate>
                         <ItemStyle CssClass="center" />
                     </asp:TemplateField>
