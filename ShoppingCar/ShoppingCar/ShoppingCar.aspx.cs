@@ -24,7 +24,7 @@ namespace ShoppingCar
             {
                 Literal ltl = (Literal)e.Row.FindControl("ltlSum");
                 string strSum = ltl.Text;
-                if (!string.IsNullOrEmpty(strSum)&&cb.Checked)
+                if (!string.IsNullOrEmpty(strSum))
                     sum += Convert.ToDouble(strSum);
             }
             else if (e.Row.RowType == DataControlRowType.Footer)
