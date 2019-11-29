@@ -29,10 +29,10 @@
                 <Columns>
                     <asp:TemplateField>
                         <ItemTemplate>
-                            <asp:CheckBox ID="chkSelect" runat="server" AutoPostBack="True" Checked="True" />
+                            <asp:CheckBox ID="chkSelect" runat="server" AutoPostBack="True" Checked="True" OnCheckedChanged="grdGoods_SelectedIndexChanged"/>
                         </ItemTemplate>
                         <FooterTemplate>
-                            <asp:LinkButton ID="lbtnSelectAll" runat="server" Text="取消全选"></asp:LinkButton>
+                            <asp:LinkButton ID="lbtnSelectAll" runat="server" Text="取消全选" OnClick="lbtnSelectAll_Click"></asp:LinkButton>
                         </FooterTemplate>
                         <ItemStyle CssClass="center" />
                     </asp:TemplateField>
@@ -75,8 +75,12 @@
                         <ItemTemplate>
                             <asp:Literal ID="ltlSum" runat="server" Text='<%# Eval("scSum","{0:f}")%>' />
                         </ItemTemplate>
+                         <FooterTemplate>
+                           <asp:Literal ID="ltlSum1" runat="server" />
+                        </FooterTemplate>
                         <ItemStyle CssClass="center" />
                     </asp:TemplateField>
+
                     <asp:TemplateField HeaderText="False">
                         <ItemTemplate>   
                             <asp:LinkButton ID="lbtnDel" runat="server" CausesValidation="false" CommandName="Delete" Text="删除" OnClientClick="return confirm('确定从该购物车中删除该商品');"/>

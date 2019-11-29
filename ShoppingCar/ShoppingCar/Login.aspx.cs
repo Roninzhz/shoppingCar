@@ -28,7 +28,7 @@ namespace ShoppingCar
                     new SqlParameter("@uPwd",txtUPwd.Text)
                 };
                 cmd.Parameters.AddRange(ps);
-                uID = (int)cmd.ExecuteScalar();
+               uID = (int)cmd.ExecuteScalar();
             }
             return uID;
         }
